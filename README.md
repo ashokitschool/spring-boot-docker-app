@@ -1,13 +1,16 @@
-# spring-boot-docker-app 
+  
+    # Simple Spring Boot with Docker Application #
 
-## 1) Clone this Repository using git client
-   https://github.com/Ashok-IT-School/spring-boot-docker-app.git
-   
-## 2) Build docker image using
-   ```bashdocker build -t spring-boot-rest-api .```
-   
-## 3) Run docker image using
-   ```docker run -p 9090:9090 spring-boot-rest-api```
-   
-## 4) Once application started you can access with url
-    http://localhost:9090/welcome/{name}
+Build the image using the following command
+
+```bash
+$ docker build -t spring-boot-rest-api .
+```
+Run the Docker container using the command shown below.
+
+```bash
+$ docker run -p 9090:9090 spring-boot-rest-api
+```
+
+The application will be accessible at http://localhost:9090/welcome/Ashok/
+
