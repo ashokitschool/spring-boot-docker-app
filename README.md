@@ -9,4 +9,4 @@
    ```docker run -p 9090:9090 spring-boot-rest-api```
    
 ## 4) Once application started you can access with url
-    ```http://localhost:9090/welcome/{name}```
+    http://localhost:9090/welcome/{name}
