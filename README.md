@@ -1,5 +1,5 @@
   
-    # Simple Spring Boot with Docker Application #
+    # Simple Spring Boot with Docker Application#
 
 Build the image using the following command
 
