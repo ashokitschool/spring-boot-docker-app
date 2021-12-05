@@ -1,6 +1,6 @@
 # spring-boot-docker-app 
 
-1) Clone this Repository using git client
+#1) Clone this Repository using git client
 
 2) Build docker image with below command
    docker build -t spring-boot-rest-api .
