@@ -1,7 +1,8 @@
 # spring-boot-docker-app 
 
 ## 1) Clone this Repository using git client
-
+   https://github.com/Ashok-IT-School/spring-boot-docker-app.git
+   
 ## 2) Build docker image using
    ```bashdocker build -t spring-boot-rest-api .```
    
