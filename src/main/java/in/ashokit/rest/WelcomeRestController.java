@@ -15,10 +15,10 @@ public class WelcomeRestController {
 		logger.info("***** WelcomeRestController::Constructor *****");
 	}
 
-	@GetMapping(value = "/welcome/{name}")
-	public String welcomeMsg(@PathVariable("name") String name) {
+	@GetMapping
+	public String welcomeMsg() {
 		logger.info("***** welcomeMsg() execution start *****");
-		String msg = name + ", Welcome to Ashok IT..!!";
+		String msg = "Welcome to Ashok IT..!!";
 		logger.info("***** welcomeMsg() execution end *****");
 		return msg;
 	}
