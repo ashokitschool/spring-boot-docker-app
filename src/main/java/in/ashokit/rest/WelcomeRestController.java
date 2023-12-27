@@ -8,6 +8,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class WelcomeRestController {
+	
+	//task 102
+	private void m2(){
+			//logic
+	}
 
 	private Logger logger = LoggerFactory.getLogger(WelcomeRestController.class);
 
