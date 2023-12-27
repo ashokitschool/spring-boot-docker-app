@@ -1,6 +1,6 @@
 FROM openjdk:11
 
-MAINTAINER "Raj"
+MAINTAINER "Ashok & Raj"
 
 COPY target/spring-boot-docker-app.jar  /usr/app/
 
