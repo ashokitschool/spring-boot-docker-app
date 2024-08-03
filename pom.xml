@@ -11,7 +11,7 @@
 	</parent>
 	<groupId>com.example</groupId>
 	<artifactId>spring-boot-docker-app</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0-RELEASE</version>
 	<packaging>jar</packaging>
 	<name>spring-boot-docker-app</name>
 	<description>Demo project for Spring Boot</description>
