@@ -12,7 +12,7 @@ public class WelcomeRestController {
 	private Logger logger = LoggerFactory.getLogger(WelcomeRestController.class);
 
 	public WelcomeRestController() {
-		logger.info("***** WelcomeRestController::Constructor *****");
+		logger.info("***** WelcomeRestController :: Constructor *****");
 	}
 
 	@GetMapping
@@ -20,6 +20,14 @@ public class WelcomeRestController {
 		logger.info("***** welcomeMsg() execution start *****");
 		String msg = "Welcome to Ashok IT - Software Training Institute (HYD) ..!!";
 		logger.info("***** welcomeMsg() execution end *****");
+		return msg;
+	}
+	
+	@GetMapping("/greet")
+	public String greetMsg() {
+		logger.info("***** greetMsg() execution start *****");
+		String msg = "Good Morning, Welcome to Ashok IT";
+		logger.info("***** greetMsg() execution end *****");
 		return msg;
 	}
 }

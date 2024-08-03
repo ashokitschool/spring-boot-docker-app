@@ -2,8 +2,8 @@ applications:
 - name: SBRestApi
   disk_quota: 1G
   instances: 1
-  memory: 1G
-  path: target/SpringBoot-Rest-API.jar
+  memory: 2G
+  path: target/app.jar
   routes:
   - route: sbrestapi.cfapps.io
   - route: myrestapi.cfapps.io
