@@ -32,6 +32,7 @@ public class WelcomeRestController {
 		System.out.println("testing git collaboration");
 		logger.info("***** greetMsg() execution end *****");
 		logger.info("***** greetMsg() execution successfull *****");
+		logger.info("***** ***************************** *****");
 		
 		return msg;
 	}
