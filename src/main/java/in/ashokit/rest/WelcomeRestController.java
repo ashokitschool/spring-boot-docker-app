@@ -38,11 +38,5 @@ public class WelcomeRestController {
 		return msg;
 	}
 	
-	//task 1
-	public void m1(){
-		String str= "Demo for stashing command";
-		//Logic
-	}
-	
 	
 }
