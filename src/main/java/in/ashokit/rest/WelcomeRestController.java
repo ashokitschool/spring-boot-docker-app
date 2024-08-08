@@ -39,6 +39,7 @@ public class WelcomeRestController {
 		int i = 10;
 		logger.info("***** greetMsg() execution successfull *****");
 		boolean status = false;
+		logger.info("***** ***************************** *****");
 		return msg;
 	}
 	
