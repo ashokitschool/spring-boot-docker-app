@@ -28,6 +28,7 @@ public class WelcomeRestController {
 	// task - 321
 	public void m2(){
 		String name = "ashok";
+		String inst = "ashokit";
 			//logic
 	}
 	
