@@ -53,4 +53,9 @@ public class WelcomeRestController {
 		// logic
 	}
 	
+	// task - 325
+	public void m3(){
+		// logic
+	}
+	
 }
