@@ -1,4 +1,4 @@
-FROM openjdk:11
+FROM eclipse-temurin:11-jre
 MAINTAINER "Ashok Bollepalli <797979>"
 COPY target/spring-boot-docker-app.jar  /usr/app/
 WORKDIR /usr/app/
