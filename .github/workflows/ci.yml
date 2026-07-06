@@ -1,0 +1,30 @@
+name: Java CI with Docker
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: maven
+
+      - name: Run Tests
+        run: ./mvnw test
+
+      - name: Build Project
+        run: ./mvnw clean package
+
+      - name: Build Docker Image
+        run: docker build -t springboot-demo:${{ github.sha }} .
