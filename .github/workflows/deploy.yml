@@ -1,0 +1,121 @@
+name: Spring Boot CI/CD
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+
+  # =========================
+  # 1. BUILD & TEST
+  # =========================
+  build:
+    name: Build and Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: maven
+
+      - name: Make Maven Wrapper executable
+        run: chmod +x mvnw
+
+      - name: Build and Test
+        run: ./mvnw clean package
+
+      - name: Upload JAR artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: spring-boot-jar
+          path: target/*.jar
+
+
+  # =========================
+  # 2. DOCKER BUILD & PUSH
+  # =========================
+  docker:
+    name: Build and Push Docker Image
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Download JAR artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: spring-boot-jar
+          path: target
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build Docker image
+        run: |
+          docker build \
+            -t ${{ secrets.DOCKERHUB_USERNAME }}/spring-boot-docker-app:latest \
+            .
+
+      - name: Push Docker image
+        run: |
+          docker push \
+            ${{ secrets.DOCKERHUB_USERNAME }}/spring-boot-docker-app:latest
+
+
+  # =========================
+  # 3. DEPLOY TO EC2
+  # =========================
+  deploy:
+    name: Deploy to EC2
+    needs: docker
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy application to EC2
+        uses: appleboy/ssh-action@v1.2.2
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+
+          script: |
+
+            echo "Pulling latest Docker image..."
+
+            docker pull \
+              ${{ secrets.DOCKERHUB_USERNAME }}/spring-boot-docker-app:latest
+
+            echo "Stopping old container..."
+
+            docker stop spring-app || true
+
+            echo "Removing old container..."
+
+            docker rm spring-app || true
+
+            echo "Starting new container..."
+
+            docker run -d \
+              --name spring-app \
+              --restart unless-stopped \
+              -p 8080:8080 \
+              ${{ secrets.DOCKERHUB_USERNAME }}/spring-boot-docker-app:latest
+
+            echo "Deployment completed!"
+
+            docker ps
